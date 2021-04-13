@@ -17,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
         appBar: AppBar(
           title: Text("HappyCarz"),
           centerTitle: true,
-          elevation: 2,
+          elevation: 20,
           backgroundColor: darkTextColor,
         ),
         // content of the screen
@@ -63,12 +63,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           enabledBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(width: 0, color: secondaryColor),
-                              borderRadius: BorderRadius.circular(20.0)),
+                              borderRadius:
+                                  BorderRadius.circular(buttonRadius)),
                           focusedBorder: OutlineInputBorder(
                               // borderSide: ,
                               borderSide:
                                   BorderSide(width: 0, color: secondaryColor),
-                              borderRadius: BorderRadius.circular(20.0)),
+                              borderRadius:
+                                  BorderRadius.circular(buttonRadius)),
                           // labelText: 'Enter your name',
                           hintText: 'Tell us your name',
                           labelStyle: TextStyle(
@@ -96,12 +98,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           enabledBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(width: 0, color: secondaryColor),
-                              borderRadius: BorderRadius.circular(20.0)),
+                              borderRadius:
+                                  BorderRadius.circular(buttonRadius)),
                           focusedBorder: OutlineInputBorder(
                               // borderSide: ,
                               borderSide:
                                   BorderSide(width: 0, color: secondaryColor),
-                              borderRadius: BorderRadius.circular(20.0)),
+                              borderRadius:
+                                  BorderRadius.circular(buttonRadius)),
                           // labelText: 'Enter your name',
                           hintText: 'Your phone number',
                           labelStyle: TextStyle(
@@ -122,7 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderRadius: BorderRadius.circular(buttonRadius)),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                            paddingValue + 65, 5, paddingValue + 65, 5),
+                            paddingValue + 30, 5, paddingValue + 30, 5),
                         child: DropdownButton<String>(
                             style: TextStyle(
                                 fontSize: normalFontSize,
@@ -162,8 +166,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               fontWeight: boldFont,
                               color: lightTextColor),
                         ),
-                        onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage()),
-                      );})
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DashboardPage()),
+                          );
+                        })
                   ]),
                 )
               ]),

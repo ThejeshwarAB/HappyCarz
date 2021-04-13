@@ -10,7 +10,7 @@ const boldFont = FontWeight.w900;
 const normalFontSize = 15.0;
 const fontName = "Inter";
 
-const buttonRadius = 20.0;
+const buttonRadius = 10.0;
 const paddingValue = 15.0;
 
 List<String> areasList = [
@@ -22,4 +22,5 @@ List<String> areasList = [
   "Egmore",
   "Mogappair",
   "Nolambur",
+  "Other"
 ];

@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: Text("HappyCarz"),
           centerTitle: true,
-          elevation: 2,
+          elevation: 20,
           backgroundColor: darkTextColor,
         ),
         // content of the screen
