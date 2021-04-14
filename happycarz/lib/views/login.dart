@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
-import 'register.dart';
+import 'package:happycarz/views/register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,62 +10,71 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        // top part of the screen
-        appBar: AppBar(
-          title: Text("HappyCarz"),
-          centerTitle: true,
-          elevation: 20,
-          backgroundColor: darkTextColor,
+    var size = MediaQuery.of(context).size;
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/background.png"),
+          fit: BoxFit.cover,
         ),
-        // content of the screen
-        backgroundColor: lightTextColor,
-        body: Center(
-            child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/background.png"),
-                fit: BoxFit.cover,
-                // colorFilter:
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.1), BlendMode.dstATop)),
+      ),
+      child: Scaffold(
+          backgroundColor: transparent,
+          appBar: AppBar(
+            title: Text(
+              "HappyCarz",
+              style: TextStyle(fontWeight: bold),
+            ),
+            centerTitle: true,
           ),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(buttonRadius)),
-                    padding: EdgeInsets.all(paddingValue),
-                    color: darkTextColor,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                          image: AssetImage('assets/images/google.png'),
-                          height: 30,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "SIGN IN WITH GOOGLE",
-                          style: TextStyle(
-                              fontSize: normalFontSize,
-                              fontWeight: boldFont,
-                              color: lightTextColor),
-                        ),
-                      ],
+          body: Container(
+            width: double.infinity,
+            height: size.height,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "GET STARTED",
+                    style: TextStyle(
+                      fontSize: number20,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
-                    })
-              ]),
-        )));
+                  ),
+                  SizedBox(
+                    height: number20,
+                  ),
+                  Container(
+                    width: size.width * .75,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(number40),
+                        child: FlatButton(
+                            color: darkPurple,
+                            padding: EdgeInsets.all(number20),
+                            onPressed: () {
+                              Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => RegisterPage()),
+  );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image(
+                                  image: AssetImage('assets/images/google.png'),
+                                  height: number20,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "GOOGLE SIGN IN",
+                                  style: TextStyle(
+                                      color: white, fontSize: number20),
+                                ),
+                              ],
+                            ))),
+                  )
+                ]),
+          )),
+    );
   }
 }

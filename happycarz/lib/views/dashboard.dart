@@ -1,152 +1,179 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+// import 'package:happycarz/main.dart';
 import 'package:happycarz/views/login.dart';
-// import 'login.dart';
 
-class DashboardPage extends StatefulWidget {
+class DashBoardPage extends StatefulWidget {
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  _DashBoardPageState createState() => _DashBoardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("HappyCarz"),
-        centerTitle: true,
-        elevation: 20,
-        backgroundColor: darkTextColor,
-      ),
-      // content of the screen
-      backgroundColor: lightTextColor,
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
-              fit: BoxFit.cover,
-              // colorFilter:
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.1), BlendMode.dstATop)),
+    var size = MediaQuery.of(context).size;
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/background.png"),
+          fit: BoxFit.cover,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(25),
-              width: double.infinity,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: secondaryColor, borderRadius: BorderRadius.vertical()),
-              // color: secondaryColor,
-              child: Text(
-                "WELCOME BACK, USER",
-                style: TextStyle(
-                    color: darkTextColor,
-                    fontSize: normalFontSize,
-                    fontWeight: boldFont),
+      ),
+      child: Scaffold(
+          backgroundColor: transparent,
+          appBar: AppBar(
+            title: Text(
+              "HappyCarz",
+              style: TextStyle(fontWeight: bold),
+            ),
+            centerTitle: true,
+          ),
+          body: Container(
+            width: double.infinity,
+            height: size.height,
+            child: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      // SizedBox(height: number20),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(number40),
+                        child: Container(
+                          color: lightPurple,
+                          width: size.width * 0.9,
+                          height: size.height * 0.4,
+                          padding: EdgeInsets.all(number40),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                            Text(
+                              "HEY THERE,\nUSER NAME",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: number30,
+                                  fontWeight: bold,
+                                  color: darkPurple),
+                            ),
+                            SizedBox(height: number10),
+                            Container(color: black,
+                            width: size.width*0.25,
+                            height: 1,),
+                            SizedBox(height: number10),
+                            Column(
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                // Text("0"),
+                                // SizedBox(height: number20),
+                                Text("YOUR STATUS", style: TextStyle(fontSize: number30),),
+                                SizedBox(height: number10),
+                                Text("ENDS BY MAY 1, 2021"), 
+                                SizedBox(height: number10),
+                                Text("WASHES COMPLETE: 0", style: TextStyle(fontSize: number20),),
+                               
+                              ]
+                            )
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: number20),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(number40),
+                        child: Container(
+                          color: lightPurple,
+                          width: size.width * 0.9,
+                          height: size.height * 0.4,
+                          padding: EdgeInsets.all(number40),
+                          child: Column(children: <Widget>[
+                            Text(
+                              "CHOOSE YOUR ACTION",
+                              style: TextStyle(
+                                  fontSize: number20,
+                                  fontWeight: bold,
+                                  color: darkPurple),
+                            ),
+                            SizedBox(height: number10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(number40),
+                                  child: Container(
+                                    color: white,
+                                    width: size.width * 0.35,
+                                    height: size.height * 0.15,
+                                    child: FlatButton(
+                                        onPressed: () {},
+                                        child: Text("PROFILE",
+                                            style: TextStyle(
+                                                fontSize: number20,
+                                                fontWeight: bold,
+                                                color: darkPurple))),
+                                  ),
+                                ),
+                                //  SizedBox(width: number30),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(number40),
+                                  child: Container(
+                                    color: white,
+                                    width: size.width * 0.35,
+                                    height: size.height * 0.15,
+                                    child: FlatButton(
+                                        onPressed: () {},
+                                        child: Text("FEEDBACK",
+                                            style: TextStyle(
+                                                fontSize: number20,
+                                                fontWeight: bold,
+                                                color: darkPurple))),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: number10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[Container(
+                        width: size.width * .7,
+                        // height: size.height * .,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(number40),
+                            child: FlatButton(
+                                color: darkPurple,
+                                padding: EdgeInsets.all(number20),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // Image(
+                                    //   image: AssetImage('assets/images/google.png'),
+                                    //   height: number20,
+                                    // ),
+                                    // SizedBox(
+                                    //   width: 10,
+                                    // ),
+                                    Text(
+                                      "BOOK A WASH",
+                                      style: TextStyle(
+                                          color: white, fontSize: number20, fontWeight: bold),
+                                    ),
+                                  ],
+                                ))),
+                      )]
+                            )
+                          ]),
+                        ),
+                      ),
+                    ]),
               ),
             ),
-            Expanded(
-                child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox(height: paddingValue),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(buttonRadius),
-                      color: backgroundColor,
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(paddingValue * 2,
-                        paddingValue * 3, paddingValue * 2, paddingValue * 3),
-                    width: double.maxFinite,
-                    child: Text(
-                      "The BEST car wash service in CHENNAI",
-                      style: TextStyle(
-                          fontSize: 1 * normalFontSize,
-                          color: darkTextColor,
-                          fontWeight: boldFont),
-                    ),
-                  ),
-                  SizedBox(height: paddingValue),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(buttonRadius),
-                      color: backgroundColor,
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(paddingValue * 2,
-                        paddingValue * 3, paddingValue * 2, paddingValue * 3),
-                    width: double.maxFinite,
-                    child: Text(
-                      "Quality expertise and customer support",
-                      style: TextStyle(
-                          fontSize: 1 * normalFontSize,
-                          color: darkTextColor,
-                          fontWeight: boldFont),
-                    ),
-                  ),
-                  SizedBox(height: paddingValue),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(buttonRadius),
-                      color: backgroundColor,
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(paddingValue * 2,
-                        paddingValue * 3, paddingValue * 2, paddingValue * 3),
-                    width: double.maxFinite,
-                    child: Text(
-                      "Over 10, 000 car washes per week*",
-                      style: TextStyle(
-                          fontSize: 1 * normalFontSize,
-                          color: darkTextColor,
-                          fontWeight: boldFont),
-                    ),
-                  ),
-                  // SizedBox(height: paddingValue),
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    child: Text(
-                      "HURRY NOW\nTry our service with one click!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 1.5 * normalFontSize,
-                          color: Colors.red[700],
-                          fontWeight: boldFont,
-                          letterSpacing: 2),
-                    ),
-                  ),
-                  // SizedBox(height: paddingValue),
-                  Container(
-                    width: double.infinity,
-                    color: darkTextColor,
-                    child: OutlineButton(
-                        child: Text(
-                          "BOOK A WASH",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: normalFontSize,
-                              color: lightTextColor,
-                              fontWeight: boldFont),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            )),
-          ],
-        ),
-      ),
+          )),
     );
   }
 }

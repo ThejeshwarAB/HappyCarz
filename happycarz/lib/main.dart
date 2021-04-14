@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:happycarz/views/login.dart';
 // import 'package:happycarz/views/login.dart';
-import 'views/login.dart';
+// import 'views/login.dart';
+// import 'views/register.dart';
+// import 'views/dashboard.dart';
 import 'constants.dart';
 
 void main() {
@@ -14,15 +17,17 @@ class MyApp extends StatelessWidget {
       title: 'HappyCarz',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // primarySwatch: Colors.blue,
+        primaryColor: darkPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: fontName,
+        fontFamily: font,
         pageTransitionsTheme: PageTransitionsTheme(builders: {
           TargetPlatform.android: CupertinoPageTransitionsBuilder(),
         }),
         textTheme: TextTheme(
             bodyText2: TextStyle(
-          color: lightTextColor,
+          fontFamily: font,
+          fontWeight: bold,
+          fontSize: number20
         )),
       ),
       home: LoginPage(),
