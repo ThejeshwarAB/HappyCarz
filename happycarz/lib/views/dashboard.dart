@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/views/checkout.dart';
+import 'package:happycarz/views/profile.dart';
 // import 'package:happycarz/views/login.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -120,7 +121,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     width: size.width * 0.35,
                                     height: size.height * 0.15,
                                     child: FlatButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                           Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ProfilePage()),
+                                              );
+                                        },
                                         child: Text("PROFILE",
                                             style: TextStyle(
                                                 fontSize: number20,
