@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:happycarz/model/auth.dart';
 import 'package:happycarz/views/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
+
+  User user;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -50,7 +61,13 @@ class _LoginPageState extends State<LoginPage> {
                             color: darkPurple,
                             padding: EdgeInsets.all(number20),
                             onPressed: () {
-                              Navigator.push(
+                              signInWithGoogle().then((user)=>{
+                                // this.widget.user = user;
+                                // var snackBar = SnackBar(content: Text('User signed in'));
+                                // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                               
+                              });
+                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => RegisterPage()),
@@ -64,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                                   height: number20,
                                 ),
                                 SizedBox(
-                                  width: 10,
+                                  width: number10,
                                 ),
                                 Text(
                                   "GOOGLE SIGN IN",

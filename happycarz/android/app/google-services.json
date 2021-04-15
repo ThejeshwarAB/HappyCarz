@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "709706132725",
+    "project_id": "happycarz-c96cb",
+    "storage_bucket": "happycarz-c96cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709706132725:android:14f162acf94362119fe9bc",
+        "android_client_info": {
+          "package_name": "com.example.happycarz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709706132725-314198qolai9cmbfjn5cu8logjgvue81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.happycarz",
+            "certificate_hash": "d964c0731ee1ae582ccf55114467b55b7f05a10e"
+          }
+        },
+        {
+          "client_id": "709706132725-97pkr7pu1crj71c9h6unf77ia8gv7b9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7Fwo9efWGvw92bYKI4_f1ikUb16RFGME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709706132725-97pkr7pu1crj71c9h6unf77ia8gv7b9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
