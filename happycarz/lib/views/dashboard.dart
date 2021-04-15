@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
-// import 'package:happycarz/main.dart';
-import 'package:happycarz/views/login.dart';
+import 'package:happycarz/views/checkout.dart';
+// import 'package:happycarz/views/login.dart';
 
 class DashBoardPage extends StatefulWidget {
   @override
@@ -45,36 +45,52 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           height: size.height * 0.4,
                           padding: EdgeInsets.all(number40),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                            Text(
-                              "HEY THERE,\nUSER NAME",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: number30,
-                                  fontWeight: bold,
-                                  color: darkPurple),
-                            ),
-                            SizedBox(height: number10),
-                            Container(color: black,
-                            width: size.width*0.25,
-                            height: 1,),
-                            SizedBox(height: number10),
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                // Text("0"),
-                                // SizedBox(height: number20),
-                                Text("YOUR STATUS", style: TextStyle(fontSize: number30),),
+                                Text(
+                                  "HEY THERE,\nUSER NAME",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: number30,
+                                      fontWeight: bold,
+                                      color: darkPurple),
+                                ),
                                 SizedBox(height: number10),
-                                Text("ENDS BY MAY 1, 2021"), 
+                                Container(
+                                  color: black,
+                                  width: size.width * 0.25,
+                                  height: 1,
+                                ),
                                 SizedBox(height: number10),
-                                Text("WASHES COMPLETE: 0", style: TextStyle(fontSize: number20),),
-                               
-                              ]
-                            )
-                          ]),
+                                Column(
+                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      // Text("0"),
+                                      // SizedBox(height: number20),
+                                      Text(
+                                        "YOUR STATUS",
+                                        style: TextStyle(
+                                          fontSize: number30,
+                                        ),
+                                      ),
+                                      SizedBox(height: number10),
+                                      Text(
+                                        "ENDS BY MAY 1, 2021",
+                                        style: TextStyle(
+                                            fontSize: number20,
+                                            fontWeight: regular),
+                                      ),
+                                      SizedBox(height: number10),
+                                      Text(
+                                        "WASHES COMPLETE: 0",
+                                        style: TextStyle(
+                                            fontSize: number20,
+                                            fontWeight: regular),
+                                      ),
+                                    ])
+                              ]),
                         ),
                       ),
                       SizedBox(height: number20),
@@ -90,7 +106,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                               "CHOOSE YOUR ACTION",
                               style: TextStyle(
                                   fontSize: number20,
-                                  fontWeight: bold,
+                                  fontWeight: regular,
                                   color: darkPurple),
                             ),
                             SizedBox(height: number10),
@@ -121,7 +137,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     height: size.height * 0.15,
                                     child: FlatButton(
                                         onPressed: () {},
-                                        child: Text("FEEDBACK",
+                                        child: Text("CONTACT",
                                             style: TextStyle(
                                                 fontSize: number20,
                                                 fontWeight: bold,
@@ -132,41 +148,48 @@ class _DashBoardPageState extends State<DashBoardPage> {
                             ),
                             SizedBox(height: number10),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[Container(
-                        width: size.width * .7,
-                        // height: size.height * .,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(number40),
-                            child: FlatButton(
-                                color: darkPurple,
-                                padding: EdgeInsets.all(number20),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginPage()),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // Image(
-                                    //   image: AssetImage('assets/images/google.png'),
-                                    //   height: number20,
-                                    // ),
-                                    // SizedBox(
-                                    //   width: 10,
-                                    // ),
-                                    Text(
-                                      "BOOK A WASH",
-                                      style: TextStyle(
-                                          color: white, fontSize: number20, fontWeight: bold),
-                                    ),
-                                  ],
-                                ))),
-                      )]
-                            )
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    width: size.width * .7,
+                                    // height: size.height * .,
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(number40),
+                                        child: FlatButton(
+                                            color: darkPurple,
+                                            padding: EdgeInsets.all(number20),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CheckoutPage()),
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                // Image(
+                                                //   image: AssetImage('assets/images/google.png'),
+                                                //   height: number20,
+                                                // ),
+                                                // SizedBox(
+                                                //   width: 10,
+                                                // ),
+                                                Text(
+                                                  "BOOK A WASH",
+                                                  style: TextStyle(
+                                                    color: white,
+                                                    fontSize: number20,
+                                                    // fontWeight: bold
+                                                  ),
+                                                ),
+                                              ],
+                                            ))),
+                                  )
+                                ])
                           ]),
                         ),
                       ),

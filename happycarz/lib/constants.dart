@@ -12,5 +12,5 @@ const regular = FontWeight.w500;
 const number10 = 10.0;
 const number20 = 17.5;
 const number30 = 30.0;
-const number40 = 35.0; 
+const number40 = 35.0;
 const font = "Inter";

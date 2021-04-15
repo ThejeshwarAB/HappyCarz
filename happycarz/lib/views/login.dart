@@ -51,9 +51,10 @@ class _LoginPageState extends State<LoginPage> {
                             padding: EdgeInsets.all(number20),
                             onPressed: () {
                               Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => RegisterPage()),
-  );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RegisterPage()),
+                              );
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
