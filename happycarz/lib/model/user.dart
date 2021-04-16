@@ -1,11 +1,16 @@
 // import 'package:flutter/material.dart';
-
-class User{
-  // FireBase user;
-  String userName;
-  String mobileNumber;
-  String postalCode;
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
+class Customer{
+  FirebaseUser user;
+  String userName="";
+  String mobileNumber="";
+  String postalCode="";
   List<Transactions> transactions;
+
+  void setUser(FirebaseUser user){
+    this.user = user;
+  }
 }
 
 class Transactions{

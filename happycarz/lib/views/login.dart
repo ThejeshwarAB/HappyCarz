@@ -1,22 +1,24 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/model/auth.dart';
 import 'package:happycarz/views/register.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:happycarz/model/user.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
-
-  User user;
+  Customer customer;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   @override
   void initState() {
     super.initState();
+    signOutGoogle();
   }
 
   @override
@@ -61,17 +63,14 @@ class _LoginPageState extends State<LoginPage> {
                             color: darkPurple,
                             padding: EdgeInsets.all(number20),
                             onPressed: () {
-                              signInWithGoogle().then((user)=>{
-                                // this.widget.user = user;
-                                // var snackBar = SnackBar(content: Text('User signed in'));
-                                // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                               
-                              });
-                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RegisterPage()),
-                              );
+                              signInWithGoogle().then((user) => {
+                                    widget.customer.user = user,
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => RegisterPage()),
+                                    ),
+                                  });
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
