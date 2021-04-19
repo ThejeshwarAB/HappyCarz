@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/views/dashboard.dart';
-// import 'package:happycarz/views/login.dart';
+import 'package:happycarz/model/user.dart';
 
 class ProfilePage extends StatefulWidget {
+  final Customer customer;
+  ProfilePage(this.customer);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -38,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "WE ARE HAPPY TO SERVE YOU",
+                        "WE ARE HAPPY TO HELP YOU",
                         style: TextStyle(
                           fontSize: number20,
                         ),
@@ -128,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => DashBoardPage()),
+                                        builder: (context) => DashBoardPage(widget.customer)),
                                   );
                                 },
                                 child: Row(
@@ -155,7 +157,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: number20,
                       ),
                        Text(
-                        "SUBSCTRIPTION STATUS: ACTIVE",
+                        "SUBSCRIPTION STATUS: ACTIVE",
                         style: TextStyle(color: darkPurple,),
                       ),
                       SizedBox(

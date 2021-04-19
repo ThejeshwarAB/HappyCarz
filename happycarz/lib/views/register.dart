@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:happycarz/model/user.dart';
 import 'package:happycarz/views/dashboard.dart';
 // import 'package:happycarz/views/login.dart';
 
+
 class RegisterPage extends StatefulWidget {
+  final Customer customer;
+  RegisterPage(this.customer);
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -128,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => DashBoardPage()),
+                                        builder: (context) => DashBoardPage(widget.customer)),
                                   );
                                 },
                                 child: Row(

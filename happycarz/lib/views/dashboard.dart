@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:happycarz/model/user.dart';
 import 'package:happycarz/views/checkout.dart';
 import 'package:happycarz/views/profile.dart';
-// import 'package:happycarz/views/login.dart';
+import 'package:happycarz/views/contact.dart';
 
 class DashBoardPage extends StatefulWidget {
+  final Customer customer;
+  DashBoardPage(this.customer);
   @override
   _DashBoardPageState createState() => _DashBoardPageState();
 }
@@ -122,12 +125,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     height: size.height * 0.15,
                                     child: FlatButton(
                                         onPressed: () {
-                                           Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ProfilePage()),
-                                              );
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProfilePage(
+                                                        widget.customer)),
+                                          );
                                         },
                                         child: Text("PROFILE",
                                             style: TextStyle(
@@ -144,7 +148,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     width: size.width * 0.35,
                                     height: size.height * 0.15,
                                     child: FlatButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ContactPage()),
+                                          );
+                                        },
                                         child: Text("CONTACT",
                                             style: TextStyle(
                                                 fontSize: number20,
