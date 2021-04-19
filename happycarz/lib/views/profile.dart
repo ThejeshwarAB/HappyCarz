@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     // contentPadding: EdgeInsets.fromLTRB(number20, number20, number20, number20),
                                     fillColor: lightPurple,
                                     filled: true,
-                                    labelText: ("Edit us your name"),
+                                    labelText: ("Edit your name"),
                                     labelStyle: TextStyle(
                                         color: darkPurple,
                                         fontWeight: bold,
@@ -119,8 +119,48 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(
                         height: number20,
                       ),
-                      Container(
-                        width: size.width * .75,
+                      // Container(
+                      //   width: size.width * .75,
+                      //   child: ClipRRect(
+                      //       borderRadius: BorderRadius.circular(number40),
+                      //       child: FlatButton(
+                      //           color: darkPurple,
+                      //           padding: EdgeInsets.all(number20),
+                      //           onPressed: () {
+                      //             Navigator.push(
+                      //               context,
+                      //               MaterialPageRoute(
+                      //                   builder: (context) => DashBoardPage(widget.customer)),
+                      //             );
+                      //           },
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.center,
+                      //             children: [
+                      //               // Image(
+                      //               //   image: AssetImage('assets/images/google.png'),
+                      //               //   height: number20,
+                      //               // ),
+                      //               // SizedBox(
+                      //               //   width: 10,
+                      //               // ),
+                      //               Text(
+                      //                 "EDIT PROFILE",
+                      //                 style: TextStyle(
+                      //                     color: white, fontSize: number20),
+                      //               ),
+                                    
+                      //             ],
+                      //           ))),
+                                
+                      // ),
+                      // SizedBox(
+                      //   height: number20,
+                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:<Widget>[
+                        Container(
+                        width: size.width * .325,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(number40),
                             child: FlatButton(
@@ -144,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     //   width: 10,
                                     // ),
                                     Text(
-                                      "EDIT PROFILE",
+                                      "EDIT",
                                       style: TextStyle(
                                           color: white, fontSize: number20),
                                     ),
@@ -153,6 +193,41 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ))),
                                 
                       ),
+                      SizedBox(width: number20),
+                      Container(
+                        width: size.width * .325,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(number40),
+                            child: FlatButton(
+                                color: darkPurple,
+                                padding: EdgeInsets.all(number20),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DashBoardPage(widget.customer)),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // Image(
+                                    //   image: AssetImage('assets/images/google.png'),
+                                    //   height: number20,
+                                    // ),
+                                    // SizedBox(
+                                    //   width: 10,
+                                    // ),
+                                    Text(
+                                      "DELETE",
+                                      style: TextStyle(
+                                          color: white, fontSize: number20),
+                                    ),
+                                    
+                                  ],
+                                ))),      
+                      ),
+                      ]),     
                       SizedBox(
                         height: number20,
                       ),
@@ -167,6 +242,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         "NUMBER OF WASHES COMPLETE: 0",
                         style: TextStyle(color: darkPurple,),
                       ), 
+                                   
                     ]),
               ),
             ),
