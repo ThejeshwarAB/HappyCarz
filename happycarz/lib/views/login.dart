@@ -1,13 +1,10 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/model/auth.dart';
 import 'package:happycarz/views/dashboard.dart';
 import 'package:happycarz/views/register.dart';
 import 'package:happycarz/model/user.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
@@ -29,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   FirebaseUser user;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -72,12 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.all(number20),
                         onPressed: () async {
                           signInWithGoogle().then((user) => {
-                                // setState(() {
-                                //   widget.customer.user = user;
-                                // }),
-                                // widget.customer.setUser(user),
                                 widget.customer.setUser(user),
-                                if (widget.customer.newUser)
+                                if (widget.customer.id=="")
                                   {
                                     Navigator.push(
                                       context,

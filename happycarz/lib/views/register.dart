@@ -4,15 +4,65 @@ import 'package:happycarz/model/user.dart';
 import 'package:happycarz/views/dashboard.dart';
 // import 'package:happycarz/views/login.dart';
 
-
 class RegisterPage extends StatefulWidget {
   final Customer customer;
+
   RegisterPage(this.customer);
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _mobileController = TextEditingController();
+  final _postalController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _mobileController.dispose();
+    _postalController.dispose();
+    super.dispose();
+  }
+
+  String _validateName(String value) {
+    RegExp regExp = new RegExp(r'^[a-zA-Z]{5,23}$');
+    if (!regExp.hasMatch(value) || value.isEmpty) {
+      return '\tPlease enter valid name';
+    }
+    return null;
+  }
+
+  String _validateMobile(String value) {
+    RegExp regExp = new RegExp(r'^[0-9]{10}$');
+    if (!regExp.hasMatch(value) || value.isEmpty) {
+      return '\tPlease enter valid mobile no.';
+    }
+    return null;
+  }
+
+  String _validatePostal(String value) {
+    RegExp regExp = new RegExp(r'^[6]{1}[0-9]{5}$');
+    if (!regExp.hasMatch(value) || value.isEmpty) {
+      return '\tPlease enter valid postal code';
+    }
+    return null;
+  }
+
+  Map<String, dynamic> _mapValue = new Map();
+
+  Future<void> makeAsMap(){
+  widget.customer.name = _nameController.text;
+  widget.customer.mobile = _mobileController.text;
+  widget.customer.postal = _postalController.text;
+  _mapValue = {
+    "name": widget.customer.name,
+    "mobile": widget.customer.mobile,
+    "postal": widget.customer.postal,
+  };
+  return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,124 +88,131 @@ class _RegisterPageState extends State<RegisterPage> {
             height: size.height,
             child: Center(
               child: SingleChildScrollView(
-                // reverse: true,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "WE ARE GLAD TO KNOW",
-                        style: TextStyle(
-                          fontSize: number20,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "WE ARE GLAD TO KNOW",
+                          style: TextStyle(
+                            fontSize: number20,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: number20,
-                      ),
-                      Container(
-                        width: size.width * .75,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(number40),
-                            child: TextField(
-                                // decoration: InputDecoration(color: lightPurple),
-                                // obscureText: true,
-                                style: TextStyle(
-                                    color: black,
-                                    fontWeight: bold,
-                                    fontSize: number20),
-                                decoration: InputDecoration(
-                                    // contentPadding: EdgeInsets.fromLTRB(number20, number20, number20, number20),
-                                    fillColor: lightPurple,
-                                    filled: true,
-                                    labelText: ("Tell us your name"),
-                                    labelStyle: TextStyle(
-                                        color: darkPurple,
-                                        fontWeight: bold,
-                                        fontSize: number20)))),
-                      ),
-                      SizedBox(
-                        height: number20,
-                      ),
-                      Container(
-                        width: size.width * .75,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(number40),
-                            child: TextField(
-                                // decoration: InputDecoration(color: lightPurple),
-                                // obscureText: true,
-                                style: TextStyle(
-                                    color: black,
-                                    fontWeight: bold,
-                                    fontSize: number20),
-                                decoration: InputDecoration(
-                                    // contentPadding: EdgeInsets.all(number10),
-                                    fillColor: lightPurple,
-                                    filled: true,
-                                    labelText: ("Your mobile number"),
-                                    labelStyle: TextStyle(
-                                        color: darkPurple,
-                                        fontWeight: bold,
-                                        fontSize: number20)))),
-                      ),
-                      SizedBox(height: number20),
-                      Container(
-                        width: size.width * .75,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(number40),
-                            child: TextField(
-                                // decoration: InputDecoration(color: lightPurple),
-                                // obscureText: true,
-                                style: TextStyle(
-                                    color: black,
-                                    fontWeight: bold,
-                                    fontSize: number20),
-                                decoration: InputDecoration(
-                                    // contentPadding: EdgeInsets.all(number20),
-                                    // prefixStyle: TextStyle(color: Colors.white),
-                                    fillColor: lightPurple,
-                                    filled: true,
-                                    labelText: ("And your postal code"),
-                                    labelStyle: TextStyle(
-                                        color: darkPurple,
-                                        fontWeight: bold,
-                                        fontSize: number20)))),
-                      ),
-                      SizedBox(
-                        height: number20,
-                      ),
-                      Container(
-                        width: size.width * .75,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(number40),
-                            child: FlatButton(
-                                color: darkPurple,
-                                padding: EdgeInsets.all(number20),
-                                onPressed: () async {
-                                  await widget.customer.fromRegisterPage();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DashBoardPage(widget.customer)),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // Image(
-                                    //   image: AssetImage('assets/images/google.png'),
-                                    //   height: number20,
-                                    // ),
-                                    // SizedBox(
-                                    //   width: 10,
-                                    // ),
-                                    Text(
-                                      "REGISTER",
-                                      style: TextStyle(
-                                          color: white, fontSize: number20),
-                                    ),
-                                  ],
-                                ))),
-                      )
-                    ]),
+                        SizedBox(
+                          height: number20,
+                        ),
+                        Container(
+                          width: size.width * .75,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(number40),
+                              child: TextFormField(
+                                  controller: _nameController,
+                                  validator: (value)=>_validateName(value),
+                                  style: TextStyle(
+                                      color: black,
+                                      fontWeight: bold,
+                                      fontSize: number20),
+                                  decoration: InputDecoration(
+                                      errorStyle: TextStyle(
+                                          color: warning,
+                                          fontWeight: bold,
+                                          fontSize: number15),
+                                      fillColor: lightPurple,
+                                      filled: true,
+                                      labelText: ("Tell us your name"),
+                                      labelStyle: TextStyle(
+                                          color: darkPurple,
+                                          fontWeight: bold,
+                                          fontSize: number20)))),
+                        ),
+                        SizedBox(
+                          height: number20,
+                        ),
+                        Container(
+                          width: size.width * .75,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(number40),
+                              child: TextFormField(
+                                  controller: _mobileController,
+                                  validator: (value)=>_validateMobile(value),
+                                  style: TextStyle(
+                                      color: black,
+                                      fontWeight: bold,
+                                      fontSize: number20),
+                                  decoration: InputDecoration(
+                                      errorStyle: TextStyle(
+                                          color: warning,
+                                          fontWeight: bold,
+                                          fontSize: number15),
+                                      fillColor: lightPurple,
+                                      filled: true,
+                                      labelText: ("Your mobile number"),
+                                      labelStyle: TextStyle(
+                                          color: darkPurple,
+                                          fontWeight: bold,
+                                          fontSize: number20)))),
+                        ),
+                        SizedBox(height: number20),
+                        Container(
+                          width: size.width * .75,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(number40),
+                              child: TextFormField(
+                                  controller: _postalController,
+                                  validator: (value)=>_validatePostal(value),
+                                  style: TextStyle(
+                                      color: black,
+                                      fontWeight: bold,
+                                      fontSize: number20),
+                                  decoration: InputDecoration(
+                                      errorStyle: TextStyle(
+                                          color: warning,
+                                          fontWeight: bold,
+                                          fontSize: number15),
+                                      fillColor: lightPurple,
+                                      filled: true,
+                                      labelText: ("And your postal code"),
+                                      labelStyle: TextStyle(
+                                          color: darkPurple,
+                                          fontWeight: bold,
+                                          fontSize: number20)))),
+                        ),
+                        SizedBox(
+                          height: number20,
+                        ),
+                        Container(
+                          width: size.width * .75,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(number40),
+                              child: FlatButton(
+                                  color: darkPurple,
+                                  padding: EdgeInsets.all(number20),
+                                  onPressed: () async {
+                                    if (_formKey.currentState.validate()) {
+                                      await makeAsMap();
+                                      await widget.customer.fromRegisterPage(_mapValue);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DashBoardPage(widget.customer)),
+                                      );
+                                    }
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "REGISTER",
+                                        style: TextStyle(
+                                            color: white, fontSize: number20),
+                                      ),
+                                    ],
+                                  ))),
+                        )
+                      ]),
+                ),
               ),
             ),
           )),

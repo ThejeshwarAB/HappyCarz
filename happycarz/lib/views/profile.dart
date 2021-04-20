@@ -11,6 +11,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  final _controller = new TextEditingController();
+
+  // _controller.text = "HELLO";
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -99,6 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(number40),
                             child: TextField(
+                              controller: _controller,
                                 // decoration: InputDecoration(color: lightPurple),
                                 // obscureText: true,
                                 style: TextStyle(
@@ -199,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(number40),
                             child: FlatButton(
-                                color: darkPurple,
+                                color: warning,
                                 padding: EdgeInsets.all(number20),
                                 onPressed: () {
                                   Navigator.push(

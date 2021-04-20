@@ -6,7 +6,7 @@ class Customer{
   String name="";
   String mobile="";
   String postal="";
-  bool newUser = true;
+  String id="";
   bool currentStatus = false;
   List<Transactions> transactions;
 
@@ -14,8 +14,8 @@ class Customer{
     this.user = user;
   }
 
-  Future<void> fromRegisterPage(){
-    addCustomerData();
+  Future<void> fromRegisterPage(Map<String, dynamic> _mapValue){
+    addCustomerData(_mapValue);
     return null;
   }
 
