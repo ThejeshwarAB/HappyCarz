@@ -13,6 +13,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -128,7 +129,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: FlatButton(
                                 color: darkPurple,
                                 padding: EdgeInsets.all(number20),
-                                onPressed: () {
+                                onPressed: () async {
+                                  await widget.customer.fromRegisterPage();
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

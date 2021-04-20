@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'data.dart';
 
 class Customer{
   FirebaseUser user;
@@ -14,8 +14,14 @@ class Customer{
     this.user = user;
   }
 
-  void fromRegisterPage(List<String> data){
+  Future<void> fromRegisterPage(){
+    addCustomerData();
+    return null;
+  }
 
+  Future<void> fromCheckoutPage(){
+    addTransactionData();
+    return null;
   }
 }
 

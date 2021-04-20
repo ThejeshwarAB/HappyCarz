@@ -23,6 +23,11 @@ class _LoginPageState extends State<LoginPage> {
     signOutGoogle();
   }
 
+  @override
+  void dispose() { 
+    super.dispose();
+  }
+
   FirebaseUser user;
   @override
   Widget build(BuildContext context) {
