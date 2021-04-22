@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 var white = Colors.white;
 var black = Colors.black;
-var warning = Colors.red[900];
+var warning = Colors.red[800];
 var transparent = Colors.transparent;
-var lightPurple = Colors.purple[100];
-var darkPurple = Colors.purple[900];
+var lightPurple = Colors.green[100];
+var darkPurple = Colors.green[800];
 
 const bold = FontWeight.w900;
 const regular = FontWeight.w500;

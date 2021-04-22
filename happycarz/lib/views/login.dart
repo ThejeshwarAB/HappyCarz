@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/model/auth.dart';
+import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/dashboard.dart';
 import 'package:happycarz/views/register.dart';
-import 'package:happycarz/model/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
-  Customer customer = Customer();
+  FirebaseUser user;
+  var userReference;
+  final databaseReference = Firestore.instance;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -21,11 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     super.dispose();
   }
-
-  FirebaseUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -70,23 +71,46 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.all(number20),
                         onPressed: () async {
                           signInWithGoogle().then((user) => {
-                                widget.customer.setUser(user),
-                                if (widget.customer.id=="")
-                                  {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => RegisterPage(widget.customer)),
-                                    ),
-                                  }
-                                else
-                                  {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DashBoardPage(widget.customer)),
-                                    ),
-                                  }
+                                // widget.customer.setUser(user),
+                                widget.user = user,
+                                // if (widget.customer.id=="")
+                                // {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             RegisterPage(widget.user)),
+                                //   ),
+                                // },
+                                widget.userReference = databaseReference
+                                    .collection('customers')
+                                    .document(
+                                        widget.user.providerData[0].email),
+                                widget.userReference.get().then((docSnapshot) =>
+                                    {
+                                      if (!docSnapshot.exists)
+                                        {
+                                          // widget.userReference
+                                          //     .onSnapshot(() => {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              RegisterPage(
+                                                                  widget.user)),
+                                                    ),
+                                                  // })
+                                        }
+                                      else
+                                        {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DashBoardPage(widget.user)),
+                                          ),
+                                        }
+                                    }),
                               });
                         },
                         child: Row(

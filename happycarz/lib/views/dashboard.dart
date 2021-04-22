@@ -1,13 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
-import 'package:happycarz/model/user.dart';
+// import 'package:happycarz/model/user.dart';
 import 'package:happycarz/views/checkout.dart';
 import 'package:happycarz/views/profile.dart';
 import 'package:happycarz/views/contact.dart';
 
 class DashBoardPage extends StatefulWidget {
-  final Customer customer;
-  DashBoardPage(this.customer);
+  // final Customer customer;
+  final FirebaseUser user;
+  DashBoardPage(this.user);
   @override
   _DashBoardPageState createState() => _DashBoardPageState();
 }
@@ -130,7 +132,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     ProfilePage(
-                                                        widget.customer)),
+                                                        widget.user)),
                                           );
                                         },
                                         child: Text("PROFILE",

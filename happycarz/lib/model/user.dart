@@ -14,15 +14,18 @@ class Customer{
     this.user = user;
   }
 
-  Future<void> fromRegisterPage(Map<String, dynamic> _mapValue){
-    addCustomerData(_mapValue);
-    return null;
+    void setId(String id){
+    this.id = id;
   }
 
-  Future<void> fromCheckoutPage(){
-    addTransactionData();
-    return null;
+  Future<String> fromRegisterPage(Map<String, dynamic> _mapValue){
+    return addCustomerData(_mapValue);
   }
+
+  // Future<void> fromCheckoutPage(){
+  //   addTransactionData();
+  //   return null;
+  // }
 }
 
 class Transactions{

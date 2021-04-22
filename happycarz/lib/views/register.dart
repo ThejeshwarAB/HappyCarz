@@ -1,13 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
-import 'package:happycarz/model/user.dart';
+import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/dashboard.dart';
 // import 'package:happycarz/views/login.dart';
 
 class RegisterPage extends StatefulWidget {
-  final Customer customer;
-
-  RegisterPage(this.customer);
+  final FirebaseUser user;
+  RegisterPage(this.user);
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -53,13 +53,11 @@ class _RegisterPageState extends State<RegisterPage> {
   Map<String, dynamic> _mapValue = new Map();
 
   Future<void> makeAsMap(){
-  widget.customer.name = _nameController.text;
-  widget.customer.mobile = _mobileController.text;
-  widget.customer.postal = _postalController.text;
   _mapValue = {
-    "name": widget.customer.name,
-    "mobile": widget.customer.mobile,
-    "postal": widget.customer.postal,
+    "id": widget.user.providerData[0].email,
+    "name": _nameController.text,
+    "mobile": _mobileController.text,
+    "postal": _postalController.text,
   };
   return null;
   }
@@ -191,12 +189,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       await makeAsMap();
-                                      await widget.customer.fromRegisterPage(_mapValue);
+                                      print(_mapValue);
+                                      await addCustomerData(_mapValue);
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                DashBoardPage(widget.customer)),
+                                                DashBoardPage(widget.user)),
                                       );
                                     }
                                   },

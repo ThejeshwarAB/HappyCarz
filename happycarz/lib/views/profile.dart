@@ -1,11 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/views/dashboard.dart';
-import 'package:happycarz/model/user.dart';
+// import 'package:happycarz/model/user.dart';
 
 class ProfilePage extends StatefulWidget {
-  final Customer customer;
-  ProfilePage(this.customer);
+  final FirebaseUser user;
+  ProfilePage(this.user);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -176,7 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => DashBoardPage(widget.customer)),
+                                        builder: (context) => DashBoardPage(widget.user)),
                                   );
                                 },
                                 child: Row(
@@ -211,7 +212,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => DashBoardPage(widget.customer)),
+                                        builder: (context) => DashBoardPage(widget.user)),
                                   );
                                 },
                                 child: Row(
