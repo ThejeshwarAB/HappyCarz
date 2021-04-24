@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
-// import 'package:happycarz/model/user.dart';
 import 'package:happycarz/views/checkout.dart';
 import 'package:happycarz/views/profile.dart';
 import 'package:happycarz/views/contact.dart';
@@ -51,23 +50,23 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           height: size.height * 0.4,
                           padding: EdgeInsets.all(number40),
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Text(
-                                  "HEY THERE,\nUSER NAME",
+                                  "HEY THERE,\n${widget.user.providerData[0].email}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: number30,
+                                      fontSize: number20,
                                       fontWeight: bold,
                                       color: darkPurple),
                                 ),
-                                SizedBox(height: number10),
+                                // SizedBox(height: number10),
                                 Container(
                                   color: black,
                                   width: size.width * 0.25,
                                   height: 1,
                                 ),
-                                SizedBox(height: number10),
+                                // SizedBox(height: number10),
                                 Column(
                                     // mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
@@ -81,14 +80,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                           fontSize: number30,
                                         ),
                                       ),
-                                      SizedBox(height: number10),
+                                      // SizedBox(height: number10),
                                       Text(
                                         "ENDS BY MAY 1, 2021",
                                         style: TextStyle(
                                             fontSize: number20,
                                             fontWeight: regular),
                                       ),
-                                      SizedBox(height: number10),
+                                      // SizedBox(height: number10),
                                       Text(
                                         "WASHES COMPLETE: 0",
                                         style: TextStyle(
