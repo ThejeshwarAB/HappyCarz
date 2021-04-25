@@ -30,7 +30,8 @@ dependencies:
   url_launcher: ^5.5.2
   cloud_firestore: ^0.11.0+2
   # cloud_firestore: ^1.0.5
-  sizer: 
+  sizer: ^1.1.6
+  flutter_spinkit: "^4.1.2"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

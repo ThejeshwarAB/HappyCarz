@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:happycarz/loader.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/model/auth.dart';
 import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/dashboard.dart';
 import 'package:happycarz/views/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
   FirebaseUser user;
   var userReference;
+  bool loading = false;
   final databaseReference = Firestore.instance;
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -38,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Scaffold(
+      child: widget.loading ? Loading() :Scaffold(
           backgroundColor: transparent,
           appBar: AppBar(
             title: Text(
@@ -72,6 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () async {
                           signInWithGoogle().then((user) => {
                                 // widget.customer.setUser(user),
+                                setState((){
+                                  widget.loading = true;
+                                }),
                                 widget.user = user,
                                 // if (widget.customer.id=="")
                                 // {
@@ -88,6 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                                         widget.user.providerData[0].email),
                                 widget.userReference.get().then((docSnapshot) =>
                                     {
+                                      setState((){
+                                        widget.loading = false;
+                                      }),
                                       if (!docSnapshot.exists)
                                         {
                                           // widget.userReference

@@ -39,7 +39,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
             child: Center(
               child: SingleChildScrollView(
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       // SizedBox(height: number20),
                       ClipRRect(
@@ -50,10 +50,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           height: size.height * 0.4,
                           padding: EdgeInsets.all(number40),
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
                                   "HEY THERE,\n${widget.user.providerData[0].email}",
+                                  // "HEY THERE,\nTHEJESHWAR",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: number20,
@@ -68,7 +69,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 ),
                                 // SizedBox(height: number10),
                                 Column(
-                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
@@ -77,23 +78,52 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       Text(
                                         "YOUR STATUS",
                                         style: TextStyle(
-                                          fontSize: number30,
+                                          fontSize: number20,
                                         ),
                                       ),
-                                      // SizedBox(height: number10),
+                                      SizedBox(height: number10),
                                       Text(
                                         "ENDS BY MAY 1, 2021",
                                         style: TextStyle(
                                             fontSize: number20,
                                             fontWeight: regular),
                                       ),
-                                      // SizedBox(height: number10),
+                                      SizedBox(height: number10),
                                       Text(
                                         "WASHES COMPLETE: 0",
                                         style: TextStyle(
                                             fontSize: number20,
                                             fontWeight: regular),
                                       ),
+                                      SizedBox(height: number20),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(number40),
+                                        child: FlatButton(
+                                            color: darkPurple,
+                                            padding: EdgeInsets.all(number20),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CheckoutPage()),
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "CHECK PLANS",
+                                                  style: TextStyle(
+                                                    color: white,
+                                                    fontSize: number20,
+                                                    // fontWeight: bold
+                                                  ),
+                                                ),
+                                              ],
+                                            ))),
                                     ])
                               ]),
                         ),
@@ -106,7 +136,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           width: size.width * 0.9,
                           height: size.height * 0.4,
                           padding: EdgeInsets.all(number40),
-                          child: Column(children: <Widget>[
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
                             Text(
                               "CHOOSE YOUR ACTION",
                               style: TextStyle(
@@ -191,13 +223,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                // Image(
-                                                //   image: AssetImage('assets/images/google.png'),
-                                                //   height: number20,
-                                                // ),
-                                                // SizedBox(
-                                                //   width: 10,
-                                                // ),
                                                 Text(
                                                   "BOOK A WASH",
                                                   style: TextStyle(

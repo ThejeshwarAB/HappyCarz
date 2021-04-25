@@ -133,7 +133,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     fillColor: lightPurple,
                                     filled: true,
                                     labelText:
-                                        ("Suitable time slot ( morning/ evening )"),
+                                        ("Any landmark nearby"),
                                     labelStyle: TextStyle(
                                         color: darkPurple,
                                         fontWeight: bold,

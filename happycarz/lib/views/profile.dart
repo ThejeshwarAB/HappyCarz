@@ -42,6 +42,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void dispose() {
+    _nameController.dispose();
+    _mobileController.dispose();
+    _postalController.dispose();
     super.dispose();
   }
 
@@ -156,43 +159,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(
                         height: number20,
                       ),
-                      // Container(
-                      //   width: size.width * .75,
-                      //   child: ClipRRect(
-                      //       borderRadius: BorderRadius.circular(number40),
-                      //       child: FlatButton(
-                      //           color: darkPurple,
-                      //           padding: EdgeInsets.all(number20),
-                      //           onPressed: () {
-                      //             Navigator.push(
-                      //               context,
-                      //               MaterialPageRoute(
-                      //                   builder: (context) => DashBoardPage(widget.customer)),
-                      //             );
-                      //           },
-                      //           child: Row(
-                      //             mainAxisAlignment: MainAxisAlignment.center,
-                      //             children: [
-                      //               // Image(
-                      //               //   image: AssetImage('assets/images/google.png'),
-                      //               //   height: number20,
-                      //               // ),
-                      //               // SizedBox(
-                      //               //   width: 10,
-                      //               // ),
-                      //               Text(
-                      //                 "EDIT PROFILE",
-                      //                 style: TextStyle(
-                      //                     color: white, fontSize: number20),
-                      //               ),
-
-                      //             ],
-                      //           ))),
-
-                      // ),
-                      // SizedBox(
-                      //   height: number20,
-                      // ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
