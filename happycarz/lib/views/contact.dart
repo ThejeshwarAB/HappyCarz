@@ -153,7 +153,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 \nWE ALSO DO SOFTWARE CONSULTANCY & DEV<3''',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    fontSize: number20,
+                                                    fontSize: number15,
                                                     // fontWeight: bold,
                                                     color: white)),
                                             onPressed: null,

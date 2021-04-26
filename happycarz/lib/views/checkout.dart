@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/views/payment.dart';
-// import 'package:happycarz/views/login.dart';
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 
 class CheckoutPage extends StatefulWidget {
   @override
@@ -37,6 +37,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      SizedBox(
+                        height: number20,
+                      ),
                       Text(
                         "JUST FEW MORE DETAILS",
                         style: TextStyle(
@@ -132,38 +135,98 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     // contentPadding: EdgeInsets.all(number10),
                                     fillColor: lightPurple,
                                     filled: true,
-                                    labelText:
-                                        ("Any landmark nearby"),
-                                    labelStyle: TextStyle(
-                                        color: darkPurple,
-                                        fontWeight: bold,
-                                        fontSize: number20)))),
-                      ),
-                      SizedBox(height: number20),
-                      Container(
-                        width: size.width * .75,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(number40),
-                            child: TextField(
-                                // decoration: InputDecoration(color: lightPurple),
-                                // obscureText: true,
-                                style: TextStyle(
-                                    color: black,
-                                    fontWeight: bold,
-                                    fontSize: number20),
-                                decoration: InputDecoration(
-                                    // contentPadding: EdgeInsets.all(number20),
-                                    // prefixStyle: TextStyle(color: Colors.white),
-                                    fillColor: lightPurple,
-                                    filled: true,
-                                    labelText:
-                                        ("Type of service( one time / subscription )"),
+                                    labelText: ("Any landmark nearby"),
                                     labelStyle: TextStyle(
                                         color: darkPurple,
                                         fontWeight: bold,
                                         fontSize: number20)))),
                       ),
                       SizedBox(
+                        height: number20,
+                      ),
+                      Text("CHOOSE CAR TYPE"),
+                      SizedBox(
+                        height: number10,
+                      ),
+                      Container(
+                        width: size.width,
+                        child: CustomRadioButton(
+                          elevation: 0,
+                          spacing: 5,
+                          width: size.width * 0.35,
+                          defaultSelected: "SEDAN",
+                          enableShape: true,
+                          height: size.height * 0.08,
+                          selectedBorderColor: transparent,
+                          unSelectedBorderColor: transparent,
+                          // absoluteZeroSpacing: true,
+                          wrapAlignment: WrapAlignment.center,
+                          unSelectedColor: lightPurple,
+                          buttonLables: [
+                            'SEDAN',
+                            'HATCH',
+                            'SUV',
+                            'PREMIUM',
+                          ],
+                          buttonValues: ["SEDAN", "HATCH", "SUV", "PREMIUM"],
+                          // autoWidth: true,
+                          enableButtonWrap: true,
+                          buttonTextStyle: ButtonTextStyle(
+                              selectedColor: white,
+                              unSelectedColor: darkPurple,
+                              textStyle: TextStyle(
+                                  color: darkPurple,
+                                  fontWeight: bold,
+                                  fontSize: number20)),
+                          radioButtonValue: (value) {
+                            // print(value);
+                          },
+                          selectedColor: darkPurple,
+                        ),
+                      ),
+                       SizedBox(
+                        height: number20,
+                      ),    
+                      Text("CHOOSE SUBSCRIPTION"),
+                      SizedBox(
+                        height: number10,
+                      ),                   
+                      Container(
+                        width: size.width,
+                        child: CustomRadioButton(
+                          elevation: 0,
+                          width: size.width,        
+                          enableShape: true,
+                          height: size.height * 0.08,
+                          selectedBorderColor: transparent,
+                          unSelectedBorderColor: transparent,
+                          // absoluteZeroSpacing: true,
+                          // wrapAlignment: WrapAlignment.start,
+                          unSelectedColor: lightPurple,
+                          buttonLables: [
+                            'ONETIME ( 1X )',
+                            'FORTNIGHT ( 2X )',
+                            'MONTHLY ( 5X )',
+                            'ANNUAL ( 50X )',
+                          ],
+                          buttonValues: ["ONETIME", "FORTNIGHT", "MONTHLY", "ANNUAL"],
+                          defaultSelected: "ONETIME",
+                          autoWidth: false,
+                          enableButtonWrap: true,
+                          buttonTextStyle: ButtonTextStyle(
+                              selectedColor: white,
+                              unSelectedColor: darkPurple,
+                              textStyle: TextStyle(
+                                  color: darkPurple,
+                                  fontWeight: bold,
+                                  fontSize: number20)),
+                          radioButtonValue: (value) {
+                            // print(value);
+                          },
+                          selectedColor: darkPurple,
+                        ),
+                      ),
+                       SizedBox(
                         height: number20,
                       ),
                       Container(
@@ -197,7 +260,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     ),
                                   ],
                                 ))),
-                      )
+                      ),
+                       SizedBox(
+                        height: number20,
+                      ),
                     ]),
               ),
             ),
