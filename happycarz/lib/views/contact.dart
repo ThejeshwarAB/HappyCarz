@@ -7,8 +7,6 @@ import 'package:happycarz/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
-  // final Customer customer;
-  // ContactPage(this.customer);
   @override
   _ContactPageState createState() => _ContactPageState();
 }

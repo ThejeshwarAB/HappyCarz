@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/views/login.dart';
@@ -5,11 +6,24 @@ import 'package:happycarz/views/login.dart';
 // import 'package:happycarz/views/login.dart';
 
 class PaymentPage extends StatefulWidget {
+  final FirebaseUser user;
+  final Map<String, dynamic> _mapValue;
+  PaymentPage(this.user,this._mapValue);
+
   @override
   _PaymentPageState createState() => _PaymentPageState();
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+
+  Map<String, dynamic> _mapValue;
+
+  @override
+  void initState() { 
+    super.initState();
+    _mapValue = widget._mapValue;
+    print(_mapValue);
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -80,7 +94,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.center,
                                       children: <Widget>[
                                         // Text("0"),
                                         SizedBox(height: number20),
@@ -88,16 +102,16 @@ class _PaymentPageState extends State<PaymentPage> {
                                             // mainAxisAlignment:
                                             //     MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                "CAR NUMBER: ",
+                                                "CAR NUMBER:",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: regular),
                                               ),
                                               Text(
-                                                "TN40AJ9000",
+                                                "${_mapValue['carNumber']}",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: bold),
@@ -108,61 +122,18 @@ class _PaymentPageState extends State<PaymentPage> {
                                             // mainAxisAlignment:
                                             //     MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                "PHONE NUMBER: ",
+                                                "DOOR NUMBER:",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: regular),
                                               ),
                                               Text(
-                                                "9841695764",
+                                              "${_mapValue['doorNumber']}",
                                                 style: TextStyle(
-                                                    fontSize: number20,
-                                                    fontWeight: bold),
-                                              ),
-                                            ]),
-                                        SizedBox(height: number20),
-                                        Column(
-                                            // mainAxisAlignment:
-                                            //     MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                "POSTAL CODE: ",
-                                                style: TextStyle(
-                                                    fontSize: number20,
-                                                    fontWeight: regular),
-                                              ),
-                                              Text(
-                                                "600095",
-                                                style: TextStyle(
-                                                    fontSize: number20,
-                                                    fontWeight: bold),
-                                              ),
-                                            ]),
-                                        // Text("CAR NUMBER:", style: TextStyle(fontSize: number20,),),
-                                        // SizedBox(height: number10),
-                                        // Text("CAR NUMBER:", style: TextStyle(fontSize: number20,),),
-                                        SizedBox(height: number20),
-
-                                        Column(
-                                            // mainAxisAlignment:
-                                            //     MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                "DOOR NUMBER: ",
-                                                style: TextStyle(
-                                                    fontSize: number20,
-                                                    fontWeight: regular),
-                                              ),
-                                              Text(
-                                                "NO.125, FLOOR 12, OLIVE BLOCK",
-                                                style: TextStyle(
+                                                    color: black,
                                                     fontSize: number20,
                                                     fontWeight: bold),
                                               ),
@@ -173,10 +144,10 @@ class _PaymentPageState extends State<PaymentPage> {
                                             // mainAxisAlignment:
                                             //     MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                "APARTMENT NAME: ",
+                                                "APARTMENT:",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                     fontSize: number20,
@@ -184,7 +155,32 @@ class _PaymentPageState extends State<PaymentPage> {
                                               ),
                                               // SizedBox(height: number10),
                                               Text(
-                                                "ORCHID SPRINGS APARTMENTS",
+                                                "${_mapValue['apartment']}",
+                                                //                                  maxLines: 4,
+                                                // softWrap: false,
+                                                // overflow: TextOverflow.fade,
+                                                style: TextStyle(
+                                                    fontSize: number20,
+                                                    fontWeight: bold),
+                                              ),
+                                            ]),
+                                            SizedBox(height: number20),
+                                        Column(
+                                            // mainAxisAlignment:
+                                            //     MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(
+                                                "LANDMARK:",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontSize: number20,
+                                                    fontWeight: regular),
+                                              ),
+                                              // SizedBox(height: number10),
+                                              Text(
+                                                "${_mapValue['landmark']}",
                                                 //                                  maxLines: 4,
                                                 // softWrap: false,
                                                 // overflow: TextOverflow.fade,
@@ -199,16 +195,16 @@ class _PaymentPageState extends State<PaymentPage> {
                                             // mainAxisAlignment:
                                             //     MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                "TIME SLOT: ",
+                                                "CAR TYPE:",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: regular),
                                               ),
                                               Text(
-                                                "MORNING",
+                                                "${_mapValue['carType']}",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: bold),
@@ -219,33 +215,70 @@ class _PaymentPageState extends State<PaymentPage> {
                                             // mainAxisAlignment:
                                             //     MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                "TYPE OF SERVICE: ",
+                                                "SUBSCRIPTION:",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: regular),
                                               ),
                                               Text(
-                                                "ONE TIME WASH",
+                                                "${_mapValue['subscription']}",
+                                                style: TextStyle(
+                                                    fontSize: number20,
+                                                    fontWeight: bold),
+                                              ),
+                                            ]),
+                                             SizedBox(height: number20),
+                                        Column(
+                                            // mainAxisAlignment:
+                                            //     MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(
+                                                "OPTED DAY&TIME:",
+                                                style: TextStyle(
+                                                    fontSize: number20,
+                                                    fontWeight: regular),
+                                              ),
+                                              Text(
+                                                "${_mapValue['_dayPreferred']}",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: bold),
                                               ),
                                             ]),
                                         SizedBox(height: number20),
-                                        // Text("CAR NUMBER:", style: TextStyle(fontSize: number20,),),
-                                        // SizedBox(height: number10),
-                                        // SizedBox(height: number20),
                                         Column(
                                             // mainAxisAlignment:
                                             //     MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                "AMOUNT: ",
+                                                "OPTED PLANTYPE:",
+                                                style: TextStyle(
+                                                    fontSize: number20,
+                                                    fontWeight: regular),
+                                              ),
+                                              Text(
+                                                "${_mapValue['planType']}",
+                                                style: TextStyle(
+                                                    fontSize: number20,
+                                                    fontWeight: bold),
+                                              ),
+                                            ]),
+                                            SizedBox(height: number20),
+                                        Column(
+                                            // mainAxisAlignment:
+                                            //     MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(
+                                                "SERVICE AMOUNT: ",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: regular),

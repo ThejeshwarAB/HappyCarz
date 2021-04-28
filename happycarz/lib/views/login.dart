@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: widget.loading ? Loading() :Scaffold(
+      child: widget.loading ? Loader() : Scaffold(
           backgroundColor: transparent,
           appBar: AppBar(
             title: Text(
