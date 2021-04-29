@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/login.dart';
 // import 'package:happycarz/views/checkout.dart';
 // import 'package:happycarz/views/login.dart';
@@ -299,7 +300,8 @@ class _PaymentPageState extends State<PaymentPage> {
                                       child: FlatButton(
                                           color: darkPurple,
                                           padding: EdgeInsets.all(number20),
-                                          onPressed: () {
+                                          onPressed: () async {
+                                            await addTransactionData(_mapValue);
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(

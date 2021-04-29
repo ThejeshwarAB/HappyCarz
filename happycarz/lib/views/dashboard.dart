@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/loader.dart';
 import 'package:happycarz/views/checkout.dart';
+import 'package:happycarz/views/plans.dart';
 import 'package:happycarz/views/profile.dart';
 import 'package:happycarz/views/contact.dart';
 
@@ -117,7 +118,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              CheckoutPage(widget.user)),
+                                                              PlansPage()),
                                                     );
                                                   },
                                                   child: Row(
