@@ -118,7 +118,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              PlansPage()),
+                                                              PlansPage(widget.user)),
                                                     );
                                                   },
                                                   child: Row(
@@ -202,7 +202,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            ContactPage()),
+                                                            ContactPage(widget.user)),
                                                   );
                                                 },
                                                 child: Text("CONTACT",

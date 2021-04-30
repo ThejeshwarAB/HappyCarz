@@ -72,11 +72,14 @@ class _LoginPageState extends State<LoginPage> {
                         color: darkPurple,
                         padding: EdgeInsets.all(number20),
                         onPressed: () async {
+                          setState((){
+                                  widget.loading = true;
+                                });
                           signInWithGoogle().then((user) => {
                                 // widget.customer.setUser(user),
-                                setState((){
-                                  widget.loading = true;
-                                }),
+                                // setState((){
+                                //   widget.loading = true;
+                                // }),
                                 widget.user = user,
                                 // if (widget.customer.id=="")
                                 // {

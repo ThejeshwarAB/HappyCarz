@@ -24,7 +24,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   String _planType = "ECO";
 
   String _validateCar(String value) {
-    RegExp regExp = new RegExp(r'^[a-zA-Z0-9 ]{7,10}$');
+    RegExp regExp = new RegExp(r'^[a-zA-Z0-9 -]{7,10}$');
     if (!regExp.hasMatch(value) || value.isEmpty) {
       return '\tPlease enter valid car no.';
     }
@@ -32,7 +32,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   String _validateDoor(String value) {
-    RegExp regExp = new RegExp(r'^[a-zA-Z ]{5,30}$');
+    RegExp regExp = new RegExp(r'^[a-zA-Z .,:!@&*-]{5,30}$');
     if (!regExp.hasMatch(value) || value.isEmpty) {
       return '\tPlease enter valid door no.';
     }
@@ -40,7 +40,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   String _validateApartment(String value) {
-    RegExp regExp = new RegExp(r'^[a-zA-Z0-9]{5,40}$');
+    RegExp regExp = new RegExp(r'^[a-zA-Z0-9 .,:!@&*-]{5,30}$');
     if (!regExp.hasMatch(value) || value.isEmpty) {
       return '\tPlease enter valid apartment';
     }
@@ -48,12 +48,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   String _validateLandmark(String value) {
-    RegExp regExp = new RegExp(r'^[a-zA-Z0-9]{5,40}$');
+    RegExp regExp = new RegExp(r'^[a-zA-Z0-9 .,:!@&*-]{5,30}$');
     if (!regExp.hasMatch(value) || value.isEmpty) {
       return '\tPlease enter valid landmark';
     }
     return null;
   }
+
+  // DateTime now = new DateTime.now();
+  // DateTime date = new DateTime(now.year, now.month, now.day);
 
   Map<String, dynamic> _mapValue = new Map();
 
@@ -69,9 +72,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
       "dayPreferred": _dayPreferred,
       "timePreferred": _timePreferred,
       "planType": _planType,
+      "totalAmount": _totalAmount,
+      "date": "123"
     };
     return null;
   }
+
+  int _numberValue = 1;
+  int _planValue = 0;
+  int _countValue = 1;
+  int _totalAmount = 0;
+
+  List _priceValues = [[149,399,799],[169,449,899],[199,599,999],[299,799,1299]];
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +135,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   // decoration: InputDecoration(color: lightPurple),
                                   // obscureText: true,
                                   controller: _carNumberController,
+                                  // maxLength: 10,
                                   validator: (value) => _validateCar(value),
                                   style: TextStyle(
                                       color: black,
@@ -151,6 +164,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   // decoration: InputDecoration(color: lightPurple),
                                   // obscureText: true,
                                   controller: _doorNumberController,
+                                  //  maxLength: 30,
                                   validator: (value) => _validateDoor(value),
                                   style: TextStyle(
                                       color: black,
@@ -182,6 +196,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   // decoration: InputDecoration(color: lightPurple),
                                   // obscureText: true,
                                   controller: _apartmentController,
+                                  // maxLength: 30,
                                   validator: (value) =>
                                       _validateApartment(value),
                                   style: TextStyle(
@@ -213,6 +228,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   // decoration: InputDecoration(color: lightPurple),
                                   // obscureText: true,
                                   controller: _landmarkController,
+                                  // maxLength: 30,
+                                  // maxLengthEnforced: false,
                                   validator: (value) =>
                                       _validateLandmark(value),
                                   style: TextStyle(
@@ -273,6 +290,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             radioButtonValue: (value) {
                               setState(() {
                                 _carType = value;
+                                if(value == "SEDAN")
+                                _numberValue = 1;
+                                else if (value == "HATCH")
+                                _numberValue = 0;
+                                else if (value == "SUV")
+                                _numberValue = 2;
+                                else 
+                                _numberValue = 3;
                               });
                             },
                             selectedColor: darkPurple,
@@ -322,6 +347,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             radioButtonValue: (value) {
                                setState(() {
                                 _subscription = value;
+                                if(value == 'ONETIME')
+                                _countValue = 1; 
+                                else if (value == 'FORTNIGHT')
+                                _countValue = 2;
+                                else if (value == 'MONTHLY')
+                                _countValue = 5;
+                                else 
+                                _countValue = 60;
                               });
                             },
                             selectedColor: darkPurple,
@@ -436,7 +469,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           child: CustomRadioButton(
                             elevation: 0,
                             spacing: 5,
-                            width: size.width,
+                            width: size.width * 2,
                             defaultSelected: "ECO",
                             enableShape: true,
                             height: size.height * 0.08,
@@ -446,9 +479,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             wrapAlignment: WrapAlignment.center,
                             unSelectedColor: lightPurple,
                             buttonLables: [
-                              'ECO (OUTER ONLY): 500 INR',
-                              'FOAM (OUTER ONLY): 500 INR',
-                              'ELITE (INNER+OUTER): 500 INR',
+                              'ECO (OUTER)',
+                              'FOAM (OUTER)',
+                              'ELITE (IN+OUT)',
                             ],
                             buttonValues: ["ECO", "FOAM", "ELITE"],
                             // autoWidth: true,
@@ -461,11 +494,27 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     fontWeight: bold,
                                     fontSize: number15)),
                             radioButtonValue: (value) {
-                              _planType = value;
+                              setState(() {
+                                 _planType = value;
+                                 if(value == "ECO")
+                                 _planValue = 0;
+                                 else if(value == "FOAM")
+                                 _planValue = 1;
+                                 else 
+                                 _planValue = 2;
+                              });
                             },
                             selectedColor: darkPurple,
                           ),
                         ),
+                         SizedBox(
+                          height: number20,
+                        ),
+                        Text("TOTAL AMT: ${_priceValues[_numberValue][_planValue]*_countValue} INR", style: TextStyle(fontSize: number30),),
+                        SizedBox(
+                          height: number20,
+                        ),
+                        Text("Please check all values before submitting", style: TextStyle(fontWeight: bold, fontSize: number15),),
                         SizedBox(
                           height: number20,
                         ),
@@ -478,6 +527,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   padding: EdgeInsets.all(number20),
                                   onPressed: () async {
                                      if (_formKey.currentState.validate()) {
+                                    setState(() {
+                                      _totalAmount = _priceValues[_numberValue][_planValue]*_countValue;
+                                    });
                                     await makeAsMap();
                                     print(_mapValue);
                                     Navigator.push(

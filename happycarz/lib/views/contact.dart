@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:happycarz/model/user.dart';
 // import 'package:happycarz/views/checkout.dart';
 // import 'package:happycarz/views/profile.dart';
@@ -7,6 +8,8 @@ import 'package:happycarz/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
+  final FirebaseUser user;
+  ContactPage(this.user);
   @override
   _ContactPageState createState() => _ContactPageState();
 }
@@ -121,7 +124,7 @@ class _ContactPageState extends State<ContactPage> {
                                         child: Container(
                                           color: white,
                                           width: size.width * 0.8,
-                                          height: size.height * 0.1,
+                                          height: size.height * 0.09,
                                           // padding: EdgeInsets.all(number20),
                                           child: FlatButton(
                                             child: Text("RATE US",

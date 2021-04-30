@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/model/data.dart';
-import 'package:happycarz/views/login.dart';
+import 'package:happycarz/views/dashboard.dart';
+// import 'package:happycarz/views/dashboard.dart';
+// import 'package:happycarz/views/login.dart';
 // import 'package:happycarz/views/checkout.dart';
 // import 'package:happycarz/views/login.dart';
 
@@ -245,7 +247,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                                     fontWeight: regular),
                                               ),
                                               Text(
-                                                "${_mapValue['_dayPreferred']}",
+                                                "${_mapValue['dayPreferred']},${_mapValue['timePreferred']}",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: bold),
@@ -285,7 +287,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                                     fontWeight: regular),
                                               ),
                                               Text(
-                                                "Rs. 250",
+                                                "Rs. ${_mapValue['totalAmount']}",
                                                 style: TextStyle(
                                                     fontSize: number20,
                                                     fontWeight: bold),
@@ -306,7 +308,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      LoginPage()),
+                                                      DashBoardPage(widget.user)),
                                             );
                                           },
                                           child: Row(

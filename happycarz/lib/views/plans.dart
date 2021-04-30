@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:happycarz/model/user.dart';
 // import 'package:happycarz/views/checkout.dart';
 // import 'package:happycarz/views/profile.dart';
@@ -7,6 +8,8 @@ import 'package:happycarz/constants.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class PlansPage extends StatefulWidget {
+  final FirebaseUser user;
+  PlansPage(this.user);
   @override
   _PlansPageState createState() => _PlansPageState();
 }
@@ -99,108 +102,6 @@ class _PlansPageState extends State<PlansPage> {
                                 Text("FOAM is clear foam wash for outer", style: TextStyle(fontWeight: regular),),
                                 SizedBox(height: number10),
                                 Text("ELITE is foam wash for inner+outer", style: TextStyle(fontWeight: regular),)
-                                // SizedBox(height: number10),
-                                // Container(
-                                //   color: black,
-                                //   width: size.width * 0.25,
-                                //   height: 1,
-                                // ),
-                                // SizedBox(height: number10),
-                                // Column(
-                                //     // mainAxisAlignment: MainAxisAlignment.center,
-                                //     crossAxisAlignment:
-                                //         CrossAxisAlignment.center,
-                                //     children: <Widget>[
-                                //       SizedBox(height: number10),
-                                //       ClipRRect(
-                                //         borderRadius:
-                                //             BorderRadius.circular(number40),
-                                //         child: Container(
-                                //           color: white,
-                                //           width: size.width * 0.8,
-                                //           height: size.height * 0.09,
-                                //           // padding: EdgeInsets.all(number20),
-                                //           child: FlatButton(
-                                //             child: Text("MOBILE",
-                                //                 style: TextStyle(
-                                //                     fontSize: number20,
-                                //                     fontWeight: bold,
-                                //                     color: black)),
-                                //             onPressed: () {
-                                //               launch("tel:+919841695764");
-                                //             },
-                                //           ),
-                                //           // padding: EdgeInsets.all(number20),
-                                //         ),
-                                //       ),
-                                //       SizedBox(height: number20),
-                                //       ClipRRect(
-                                //         borderRadius:
-                                //             BorderRadius.circular(number40),
-                                //         child: Container(
-                                //           color: white,
-                                //           width: size.width * 0.8,
-                                //           height: size.height * 0.09,
-                                //           // padding: EdgeInsets.all(number20),
-                                //           child: FlatButton(
-                                //             child: Text("EMAIL",
-                                //                 style: TextStyle(
-                                //                     fontSize: number20,
-                                //                     fontWeight: bold,
-                                //                     color: black)),
-                                //             onPressed: () {
-                                //               launch("mailto:abibastheja@gmail.com?subject=APP FEEDBACK"); 
-                                //             },
-                                //           ),
-                                //           // padding: EdgeInsets.all(number20),
-                                //         ),
-                                //       ),
-                                //       SizedBox(height: number20),
-                                //       ClipRRect(
-                                //         borderRadius:
-                                //             BorderRadius.circular(number40),
-                                //         child: Container(
-                                //           color: white,
-                                //           width: size.width * 0.8,
-                                //           height: size.height * 0.1,
-                                //           // padding: EdgeInsets.all(number20),
-                                //           child: FlatButton(
-                                //             child: Text("RATE US",
-                                //                 style: TextStyle(
-                                //                     fontSize: number20,
-                                //                     fontWeight: bold,
-                                //                     color: black)),
-                                //             onPressed: () {
-                                //               launch("HTTP://google.com");
-                                //             },
-                                //           ),
-                                //           // padding: EdgeInsets.all(number20),
-                                //         ),
-                                //       ),
-                                //       SizedBox(height: number20),
-                                //       ClipRRect(
-                                //         borderRadius:
-                                //             BorderRadius.circular(number40),
-                                //         child: Container(
-                                //           color: darkPurple,
-                                //           width: size.width * 0.8,
-                                //           height: size.height * 0.2,
-                                //           // padding: EdgeInsets.all(number10),
-                                //           child: FlatButton(
-                                //             child: Text(
-                                //                 '''CHENNAI BASED STARTUP.\nGOOD SERVICE IS OUR GOAL. 
-                                //                 \nWE ALSO DO SOFTWARE CONSULTANCY & DEV<3''',
-                                //                 textAlign: TextAlign.center,
-                                //                 style: TextStyle(
-                                //                     fontSize: number15,
-                                //                     // fontWeight: bold,
-                                //                     color: white)),
-                                //             onPressed: null,
-                                //           ),
-                                //           // padding: EdgeInsets.all(number20),
-                                //         ),
-                                //       ),
-                                //     ])
                               ]),
                         ),
                       ),
