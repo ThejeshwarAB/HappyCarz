@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
@@ -5,6 +6,7 @@ import 'package:happycarz/loader.dart';
 import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:happycarz/views/internet.dart';
 import 'package:happycarz/views/login.dart';
 
 // ignore: must_be_immutable
@@ -51,6 +53,23 @@ class _ProfilePageState extends State<ProfilePage> {
     super.dispose();
   }
 
+  var connected = true;
+
+  Future<void> checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      setState(() {
+        connected = true;
+      });
+    } else {
+      setState(() {
+        connected = false;
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -61,9 +80,11 @@ class _ProfilePageState extends State<ProfilePage> {
           fit: BoxFit.cover,
         ),
       ),
-      child:  widget.loading
-          ? Loader()
-          : Scaffold(
+      child:  !connected
+          ? InternetPage()
+          : (widget.loading
+              ? Loader()
+              : Scaffold(
           backgroundColor: transparent,
           appBar: AppBar(
             title: Text(
@@ -278,7 +299,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-          )),
+          ))),
     );
   }
 }

@@ -1,11 +1,16 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
+import 'package:happycarz/loader.dart';
+import 'package:happycarz/views/internet.dart';
 import 'package:happycarz/views/payment.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 
+// ignore: must_be_immutable
 class CheckoutPage extends StatefulWidget {
   final FirebaseUser user;
+  bool loading = false;
   CheckoutPage(this.user);
   @override
   _CheckoutPageState createState() => _CheckoutPageState();
@@ -85,6 +90,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   List _priceValues = [[149,399,799],[169,449,899],[199,599,999],[299,799,1299]];
 
+  var connected = true;
+
+  Future<void> checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      setState(() {
+        connected = true;
+      });
+    } else {
+      setState(() {
+        connected = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -95,7 +116,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Scaffold(
+      child:  !connected
+          ? InternetPage()
+          : (widget.loading
+              ? Loader()
+              : Scaffold(
           backgroundColor: transparent,
           appBar: AppBar(
             title: Text(
@@ -565,7 +590,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
               ),
             ),
-          )),
+          ))),
     );
   }
 }

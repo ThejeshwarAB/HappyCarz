@@ -1,15 +1,17 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/loader.dart';
 import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/dashboard.dart';
+import 'package:happycarz/views/internet.dart';
 import 'package:happycarz/views/login.dart';
 
 // ignore: must_be_immutable
 class RegisterPage extends StatefulWidget {
   final FirebaseUser user;
-  var loading = false;
+  bool loading = false;
   RegisterPage(this.user);
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -65,6 +67,22 @@ class _RegisterPageState extends State<RegisterPage> {
     return null;
   }
 
+  var connected = true;
+
+  Future<void> checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      setState(() {
+        connected = true;
+      });
+    } else {
+      setState(() {
+        connected = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -75,9 +93,11 @@ class _RegisterPageState extends State<RegisterPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: widget.loading
-          ? Loader()
-          : Scaffold(
+      child: !connected
+          ? InternetPage()
+          : (widget.loading
+              ? Loader()
+              : Scaffold(
               backgroundColor: transparent,
               appBar: AppBar(
                 title: Text(
@@ -238,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-              )),
+              ))),
     );
   }
 }

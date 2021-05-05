@@ -1,20 +1,42 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:happycarz/loader.dart';
+import 'package:happycarz/views/internet.dart';
 // import 'package:happycarz/model/user.dart';
 // import 'package:happycarz/views/checkout.dart';
 // import 'package:happycarz/views/profile.dart';
 // import 'package:happycarz/views/login.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class PlansPage extends StatefulWidget {
   final FirebaseUser user;
+  bool loading = false;
   PlansPage(this.user);
   @override
   _PlansPageState createState() => _PlansPageState();
 }
 
 class _PlansPageState extends State<PlansPage> {
+
+  var connected = true;
+
+  Future<void> checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      setState(() {
+        connected = true;
+      });
+    } else {
+      setState(() {
+        connected = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -25,7 +47,11 @@ class _PlansPageState extends State<PlansPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Scaffold(
+      child:  !connected
+          ? InternetPage()
+          : (widget.loading
+              ? Loader()
+              : Scaffold(
           backgroundColor: transparent,
           appBar: AppBar(
             title: Text(
@@ -108,7 +134,7 @@ class _PlansPageState extends State<PlansPage> {
                     ]),
               ),
             ),
-          )),
+          ))),
     );
   }
 }

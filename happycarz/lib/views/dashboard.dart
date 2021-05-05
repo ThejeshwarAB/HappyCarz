@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happycarz/constants.dart';
 import 'package:happycarz/loader.dart';
+import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/checkout.dart';
+import 'package:happycarz/views/internet.dart';
 import 'package:happycarz/views/plans.dart';
 import 'package:happycarz/views/profile.dart';
 import 'package:happycarz/views/contact.dart';
@@ -12,15 +16,59 @@ class DashBoardPage extends StatefulWidget {
   // final Customer customer;
   final FirebaseUser user;
   bool loading = false;
+  var userReference;
+  final databaseReference = Firestore.instance;
   DashBoardPage(this.user);
   @override
   _DashBoardPageState createState() => _DashBoardPageState();
 }
 
 class _DashBoardPageState extends State<DashBoardPage> {
+
+  String _transactionLength="0", _status="ACTIVE";
+
+  @override
+  void initState() { 
+    super.initState();
+     widget.userReference = databaseReference
+        .collection('customers')
+        .document(widget.user.providerData[0].email);
+    widget.userReference.get().then((docSnapshot) => {
+          if (docSnapshot.exists)
+            {
+              setState(() {
+                // _nameController.text = docSnapshot["name"];
+                // _mobileController.text = docSnapshot["mobile"];
+                // _postalController.text = docSnapshot["postal"];
+                _transactionLength = docSnapshot["transactions"].length.toString();
+                _status = docSnapshot["status"];
+              })
+            }
+        });
+  }
+
+  var connected = true;
+
+  Future<void> checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      setState(() {
+        connected = true;
+      });
+    } else {
+      setState(() {
+        connected = false;
+      });
+    }
+  }
+
   
   @override
   Widget build(BuildContext context) {
+
+    checkConnection();
+
     var size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
@@ -29,7 +77,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: widget.loading
+      child: !connected
+          ? InternetPage()
+          : (widget.loading
           ? Loader()
           : Scaffold(
               backgroundColor: transparent,
@@ -92,14 +142,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                           ),
                                           SizedBox(height: number10),
                                           Text(
-                                            "ENDS BY MAY 1, 2021",
+                                            "SUBSCRIPTION: $_status",
                                             style: TextStyle(
                                                 fontSize: number20,
                                                 fontWeight: regular),
                                           ),
                                           SizedBox(height: number10),
                                           Text(
-                                            "WASHES COMPLETE: 0",
+                                            "WASHES COMPLETE: $_transactionLength",
                                             style: TextStyle(
                                                 fontSize: number20,
                                                 fontWeight: regular),
@@ -261,7 +311,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         ]),
                   ),
                 ),
-              )),
+              ))),
     );
   }
 }
