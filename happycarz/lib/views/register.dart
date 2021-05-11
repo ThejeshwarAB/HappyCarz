@@ -63,6 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
       "name": _nameController.text,
       "mobile": _mobileController.text,
       "postal": _postalController.text,
+      "status": false
     };
     return null;
   }

@@ -7,10 +7,6 @@ import 'package:happycarz/model/data.dart';
 import 'package:happycarz/views/dashboard.dart';
 import 'package:happycarz/views/internet.dart';
 import 'package:upi_india/upi_india.dart';
-// import 'package:happycarz/views/dashboard.dart';
-// import 'package:happycarz/views/login.dart';
-// import 'package:happycarz/views/checkout.dart';
-// import 'package:happycarz/views/login.dart';
 
 // ignore: must_be_immutable
 class PaymentPage extends StatefulWidget {
@@ -46,7 +42,7 @@ class _PaymentPageState extends State<PaymentPage> {
       receiverName: 'Thejeshwar AB',
       transactionRefId: 'UpiPlugin',
       transactionNote: 'HappyCarzPayment',
-      amount: 1.00,
+      amount: _mapValue['_totalAmount'],
     );
   }
 
@@ -368,6 +364,8 @@ class _PaymentPageState extends State<PaymentPage> {
                                                 padding:
                                                     EdgeInsets.all(number20),
                                                 onPressed: () async {
+                                                  // await addTransactionData(
+                                                  //     _mapValue);
                                                   try {
                                                     res =
                                                         await initiateTransaction(
@@ -376,10 +374,11 @@ class _PaymentPageState extends State<PaymentPage> {
                                                         UpiPaymentStatus
                                                             .FAILURE) {
                                                     } else if (res.status ==
-                                                        UpiPaymentStatus
-                                                            .SUCCESS) {
-                                                      await addTransactionData(
-                                                          _mapValue);
+                                                            UpiPaymentStatus
+                                                                .SUCCESS)
+                                                                {
+                                                                  await addTransactionData(
+                                                      _mapValue);
                                                       Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
@@ -387,16 +386,14 @@ class _PaymentPageState extends State<PaymentPage> {
                                                                 DashBoardPage(
                                                                     widget
                                                                         .user)),
-                                                      );
-                                                    }
+                                                      );}
                                                   } catch (UpiIndiaAppNotInstalledException) {
                                                     setState(() {
                                                       _message =
                                                           "GPAY NOT INSTALLED";
                                                       _colorCode = warning;
                                                     });
-                                                    await Future.delayed(
-                                                        Duration(seconds: 3));
+                                                    await Future.delayed(Duration(seconds: 3));
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
